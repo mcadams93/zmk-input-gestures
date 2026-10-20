@@ -13,8 +13,10 @@
  LOG_MODULE_DECLARE(gestures, CONFIG_ZMK_LOG_LEVEL);
 
  // Max distance (squared) finger can move from start and still count as a tap.
- // With 1024x1024 coordinate space, 40 units ~= 4% of pad width.
- #define TAP_DISTANCE_THRESHOLD_SQ 1600
+ // With 1024x1024 coordinate space, 80 units ~= 8% of pad width.
+ // Generous threshold improves double-tap reliability since the second tap
+ // often lands in a slightly different spot after lift-off.
+ #define TAP_DISTANCE_THRESHOLD_SQ 6400
 
  int tap_detection_handle_start(const struct device *dev, struct gesture_event_t *event) {
      struct gesture_config *config = (struct gesture_config *)dev->config;
