@@ -44,6 +44,7 @@ static int handle_touch(const struct device *dev, struct gesture_event_t *event)
 
 static int handle_touch_end(const struct device *dev) {
     LOG_DBG("handle_touch_end");
+    tap_detection_handle_end(dev);
     circular_scroll_handle_end(dev);
     inertial_cursor_handle_end(dev);
     return 0;
