@@ -25,7 +25,7 @@ static void inertial_cursor_work_handler(struct k_work *work) {
 
     if (abs((int) data->delta_x) > 0 || abs((int) data->delta_y) > 0) {
         zmk_hid_mouse_movement_update((int) data->delta_y, (int) -data->delta_x);
-        zmk_endpoints_send_mouse_report();
+        zmk_endpoint_send_mouse_report();
         k_work_reschedule(&data->inertial_work, K_MSEC(data->delta_time));
     }
 }
@@ -100,7 +100,7 @@ int inertial_cursor_handle_end(const struct device *dev) {
     data->inertial_cursor.delta_y *= data->inertial_cursor.velocity_decay;
     
     zmk_hid_mouse_movement_set(0, 0);
-    zmk_endpoints_send_mouse_report();
+    zmk_endpoint_send_mouse_report();
 
     k_work_reschedule(&data->inertial_cursor.inertial_work, K_MSEC(data->inertial_cursor.delta_time));
 

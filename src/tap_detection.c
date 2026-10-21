@@ -78,9 +78,9 @@
 
          LOG_DBG("tap detected on lift-off - sending click");
          zmk_hid_mouse_button_press(0);
-         zmk_endpoints_send_mouse_report();
+         zmk_endpoint_send_mouse_report();
          zmk_hid_mouse_button_release(0);
-         zmk_endpoints_send_mouse_report();
+         zmk_endpoint_send_mouse_report();
      }
 
      return 0;
